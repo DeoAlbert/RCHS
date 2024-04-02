@@ -1,2 +1,2 @@
 # RCHS
-Django
+Djang🤣
