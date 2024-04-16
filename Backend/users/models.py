@@ -1,15 +1,8 @@
-from django.db import models
-
-# Create your models here.
-
-from django.db import models
-
-# Create your models here.
 
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-
+from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your models here.
 
@@ -55,7 +48,7 @@ class CustomAccountManager(BaseUserManager):
 # created a custom user model
 class HealthcareWorker(AbstractBaseUser,PermissionsMixin):
     user_id = models.CharField(max_length=255,unique=True)
-    user_name = models.CharField(max_length=255,unique=True)
+    username = models.CharField(max_length=255,unique=True)
     email = models.EmailField(unique=True)
     first_name= models.CharField(max_length=255)
     last_name= models.CharField(max_length=255)
@@ -65,9 +58,16 @@ class HealthcareWorker(AbstractBaseUser,PermissionsMixin):
 
     objects = CustomAccountManager()
 
-    USERNAME_FIELD = "user_id"
-    REQUIRED_FIELDS = ["email","user_name", "first_name","last_name"]
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email","user_id", "first_name","last_name"]
 
     def __str__(self):
-        return self.user_name
+        return self.username
+    
+    def tokens(self):
+        refresh = RefreshToken.for_user(self)
+        return{
+            'refresh':str(refresh),
+            'access':str(refresh.access_token)
+        }
 
