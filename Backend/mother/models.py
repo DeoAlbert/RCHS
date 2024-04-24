@@ -25,7 +25,7 @@ class Mother (models.Model):
     Miscarriage_year = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.jina_la_mama
+        return self.Mothers_name
 
 
 class Visit(models.Model):
