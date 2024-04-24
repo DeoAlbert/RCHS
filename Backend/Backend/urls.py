@@ -27,7 +27,10 @@ from rest_framework_simplejwt.views import (
 
 router = routers.DefaultRouter()
 router.register(r'mother', views.MotherViewSet)
-router.register(r'visit', views.VisitViewSet)
+router.register(r'mother_visit', views.MotherVisitViewSet)
+# router.register(r'child', views.ChildViewSet)
+# router.register(r'child_visit', views.ChildVisitViewSet)
+
 
 
 urlpatterns = [

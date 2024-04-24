@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import permissions
-from .models import Mother, Visit
-from .serializers import MotherSerializer, VisitSerializer
+from .models import Mother, Mother_visit
+from .serializers import MotherSerializer, MotherVisitSerializer
 
 # Create your views here.
 
@@ -12,12 +12,9 @@ class MotherViewSet(viewsets.ModelViewSet):
     #permission_classes=[permissions.IsAuthenticated]
 
 
-class VisitViewSet(viewsets.ModelViewSet):
-    queryset= Visit.objects.all()
-    serializer_class=VisitSerializer
+class MotherVisitViewSet(viewsets.ModelViewSet):
+    queryset= Mother_visit.objects.all()
+    serializer_class=MotherVisitSerializer
     #permission_classes=[permissions.IsAuthenticated]
 
-    # uasububnsjacncas
-    # nscjnjasbncJNBuscj
-    # bscHBhubcsahuhucsal
     
