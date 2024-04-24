@@ -9,10 +9,18 @@ from .serializers import MotherSerializer, VisitSerializer
 class MotherViewSet(viewsets.ModelViewSet):
     queryset= Mother.objects.all()
     serializer_class=MotherSerializer
-    permission_classes=[permissions.IsAuthenticated]
+    #permission_classes=[permissions.IsAuthenticated]
 
 
 class VisitViewSet(viewsets.ModelViewSet):
     queryset= Visit.objects.all()
     serializer_class=VisitSerializer
-    permission_classes=[permissions.IsAuthenticated]
+    #permission_classes=[permissions.IsAuthenticated]
+
+    # uasububnsjacncas
+    # nscjnjasbncJNBuscj
+    # bscHBhubcsahuhucsal
+    # aschBhcsahbcauouscanj
+    # ashCBhbascOUBSABUCuasb
+    # aschvysacoosacbyocsb
+    # asvhubhjcsahjbsachcbs
