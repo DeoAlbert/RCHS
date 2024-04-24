@@ -20,7 +20,4 @@ class VisitViewSet(viewsets.ModelViewSet):
     # uasububnsjacncas
     # nscjnjasbncJNBuscj
     # bscHBhubcsahuhucsal
-    # aschBhcsahbcauouscanj
-    # ashCBhbascOUBSABUCuasb
-    # aschvysacoosacbyocsb
-    # asvhubhjcsahjbsachcbs
+    
