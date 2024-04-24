@@ -16,3 +16,11 @@ class VisitViewSet(viewsets.ModelViewSet):
     queryset= Visit.objects.all()
     serializer_class=VisitSerializer
     #permission_classes=[permissions.IsAuthenticated]
+
+    # uasububnsjacncas
+    # nscjnjasbncJNBuscj
+    # bscHBhubcsahuhucsal
+    # aschBhcsahbcauouscanj
+    # ashCBhbascOUBSABUCuasb
+    # aschvysacoosacbyocsb
+    # asvhubhjcsahjbsachcbs
