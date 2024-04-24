@@ -47,3 +47,5 @@ class Mother_visit(models.Model):
 
     def __str__(self):
         return self.Tarehe
+
+# jabjsjacb
