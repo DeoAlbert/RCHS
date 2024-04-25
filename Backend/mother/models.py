@@ -25,7 +25,7 @@ class Mother (models.Model):
     miscarrimother_age_mother_age = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.Mothers_name
+        return self.mother_name
 
 
 class Mother_visit(models.Model):
