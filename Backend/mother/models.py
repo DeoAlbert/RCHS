@@ -19,10 +19,10 @@ class Mother (models.Model):
     Chairperson_name=models.CharField(max_length=255)
     pregnancies=models.IntegerField()
     alive_children=models.IntegerField()
-    miscarrimother_ages = models.CharField(max_length=255)
+    miscarriages = models.CharField(max_length=255)
     births=models.IntegerField()
-    miscarrimother_age_year = models.CharField(max_length=255)
-    miscarrimother_age_mother_age = models.CharField(max_length=255)
+    miscarriage_age = models.CharField(max_length=255)
+    miscarriage_year = models.CharField(max_length=255)
 
     def __str__(self):
         return self.mother_name
