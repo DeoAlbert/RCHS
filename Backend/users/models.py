@@ -8,19 +8,22 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
  # created a custom manager model
 class CustomAccountManager(BaseUserManager):
-    def create_user(self,email,user_name, first_name,last_name,password,**other_fields):
+    def create_user(self,email,username, first_name,last_name,password,**other_fields):
 
         if not email:
             raise ValueError("You must provide an email address")
 
         email = self.normalize_email(email)
-        user = self.model(email =email,user_name= user_name, first_name = first_name,last_name = last_name,**other_fields)
+        user = self.model(email =email,username= username, first_name = first_name,last_name = last_name,password = password,**other_fields)
         user.set_password(password)
-        user.save()
+        other_fields.setdefault('is_staff', False)
+        other_fields.setdefault('is_superuser', False)
+        user.save(using = self.db)
         return user
 
 
-    def create_superuser(self,email,user_name, first_name,last_name,password,**other_fields):
+
+    def create_superuser(self,email,username, first_name,last_name,password,**other_fields):
 
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
@@ -34,12 +37,12 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError("You must provide an email address")
 
         # email = self.normalize_email(email)
-        # user = self.model(email =email,user_name= user_name, first_name = first_name,last_name = last_name,**other_fields)
+        # user = self.model(email =email,username= username, first_name = first_name,last_name = last_name,**other_fields)
         # user.set_password(password)
         # user.save()
         # return user
 
-        return self.create_user(email,user_name, first_name,last_name,password,**other_fields)
+        return self.create_user(email,username, first_name,last_name,password,**other_fields)
 
 
 
@@ -52,6 +55,7 @@ class HealthcareWorker(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name= models.CharField(max_length=255)
     last_name= models.CharField(max_length=255)
+    password = models.CharField(max_length=128)
     start_date= models.DateTimeField(default=timezone.now)
     is_staff= models.BooleanField(default=False)
     is_active=models.BooleanField(default=False)
@@ -59,7 +63,7 @@ class HealthcareWorker(AbstractBaseUser,PermissionsMixin):
     objects = CustomAccountManager()
 
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email","user_id", "first_name","last_name"]
+    REQUIRED_FIELDS = ["email","user_id", "first_name","last_name","password"]
 
     def __str__(self):
         return self.username
