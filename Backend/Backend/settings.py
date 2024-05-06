@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "mother",
     "child",
-    "users",
+    "user"
 ]
 
 MIDDLEWARE = [
@@ -146,7 +146,7 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "users.HealthcareWorker"
+AUTH_USER_MODEL = "user.HealthcareWorker"
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
