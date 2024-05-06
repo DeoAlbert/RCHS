@@ -54,7 +54,9 @@ class HealthcareWorker(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=255,unique=True)
     email = models.EmailField(unique=True)
     first_name= models.CharField(max_length=255)
-    last_name= models.CharField(max_length=255)
+    middle_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    occupation = models.CharField(max_length=255)
     password = models.CharField(max_length=128)
     start_date= models.DateTimeField(default=timezone.now)
     is_staff= models.BooleanField(default=False)
@@ -63,7 +65,7 @@ class HealthcareWorker(AbstractBaseUser,PermissionsMixin):
     objects = CustomAccountManager()
 
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email","user_id", "first_name","last_name","password"]
+    REQUIRED_FIELDS = ["email","user_id", "first_name","last_name","password","middle_name","occupation"]
 
     def __str__(self):
         return self.username

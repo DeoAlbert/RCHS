@@ -10,7 +10,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HealthcareWorker
-        fields = ("user_id","username","email","first_name","last_name","password")
+        fields = ("user_id","username","email","first_name","last_name","password","middle_name","occupation")
         extra_kwargs = {'password': {'write_only': True}}
 
         def create(self, validated_data):
