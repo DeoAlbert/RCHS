@@ -6,12 +6,14 @@ from rest_framework_simplejwt.tokens import RefreshToken
 # Create your models here.
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self,email,username, first_name,middle_name,last_name,occupation,password,**extra_fields):
+    def _create_user(self,email,username, first_name,middle_name,last_name,occupation,password,**extra_fields):
         email = self.normalize_email(email)
-        user = self.model(email = email,username=username,first_name=first_name,middle_name=middle_name,last_name=last_name,occupation=occupation,**extra_fields)
+        user = self.model(email = email,username=username,first_name=first_name,middle_name=middle_name,last_name=last_name,occupation=occupation, **extra_fields)
         user.set_password(password)
         user.save()
         return user
+
+    
     
     def create_superuser(self,email,username, first_name,middle_name,last_name,occupation,password,**extra_fields):
         extra_fields.setdefault('is_staff', True)
@@ -25,7 +27,7 @@ class CustomUserManager(BaseUserManager):
         if not email:
             raise ValueError("You must provide an email address")
         
-        return self.create_user(email=email,username=username, first_name=first_name,middle_name=middle_name,last_name=last_name,occupation=occupation,password=password,**extra_fields)
+        return self._create_user(email=email,username=username, first_name=first_name,middle_name=middle_name,last_name=last_name,occupation=occupation,password=password,**extra_fields)
     
 
 # created a custom user model
@@ -44,7 +46,7 @@ class HealthcareWorker(AbstractUser,PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email","user_id", "first_name","middle_name","last_name","occupation"]
+    REQUIRED_FIELDS = ["email","user_id", "first_name","middle_name","last_name","occupation",]
 
     def __str__(self):
         return self.username
