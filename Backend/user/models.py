@@ -8,6 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 class CustomUserManager(BaseUserManager):
     def _create_user(self,email,username, first_name,middle_name,last_name,occupation,password,**extra_fields):
         email = self.normalize_email(email)
+        extra_fields.setdefault('is_staff', True)
         user = self.model(email = email,username=username,first_name=first_name,middle_name=middle_name,last_name=last_name,occupation=occupation, **extra_fields)
         user.set_password(password)
         user.save()

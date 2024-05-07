@@ -51,6 +51,8 @@ class LoginSerializer(serializers.ModelSerializer):
             'tokens': user.tokens
         }
 
+
+
 # class LoginSerializer(serializers.ModelSerializer):
 #     password = serializers.CharField(max_length=68, write_only=True)
 #     username = serializers.CharField(max_length=255)
