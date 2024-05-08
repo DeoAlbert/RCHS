@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Child_visit, Child
+from .models import Child_visit, Child, Consultation_Visit_Child
 
 class ChildSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -10,4 +10,9 @@ class ChildSerializer(serializers.HyperlinkedModelSerializer):
 class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= Child_visit
+        fields= "__all__"
+
+class ChildConsultationVisitSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model= Consultation_Visit_Child
         fields= "__all__"

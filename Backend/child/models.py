@@ -86,3 +86,18 @@ class Child_visit(models.Model):
     
     def __str__(self):
         return str(self.Tarehe)
+
+
+class Consultation_Visit_Child(models.Model):
+    Tarehe = models.DateField()
+    Visit_type = models.CharField(max_length=255)
+    weight = models.CharField(max_length=255)
+    height = models.CharField(max_length=255)
+    temperature = models.CharField(max_length=255)
+    other = models.CharField(max_length=255)
+    Test_Results = models.CharField(max_length=255)
+    Additional_Notes = models.CharField(max_length=255)
+    #mother = models.ForeignKey(Mother, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.child_name
