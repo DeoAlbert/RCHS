@@ -38,5 +38,4 @@ def getMotherSummary(request):
 
     return Response(response_data)
 
-
     
