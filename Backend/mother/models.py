@@ -30,8 +30,12 @@ class Mother (models.Model):
 
 class Mother_visit(models.Model):
 
-    visit_date = models.DateField()
+    #Foreign key.
+    mother=models.ForeignKey('Mother', on_delete=models.CASCADE)
+    
+    # Visit details
     visit_number = models.IntegerField()
+    visit_date = models.DateField()
 
     # Section 2: Health Measurements
     body_temperature = models.IntegerField()
@@ -82,8 +86,6 @@ class Mother_visit(models.Model):
     provider_name = models.CharField(max_length=255)
     provider_title = models.CharField(max_length=255)
 
-    #Foreign key.
-    Mother=models.ForeignKey('Mother', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.visit_date
