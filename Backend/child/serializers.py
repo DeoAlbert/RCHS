@@ -2,6 +2,7 @@ from rest_framework import serializers
 from mother.models import Mother
 from .models import Child_visit, Child, Consultation_Visit_Child
 
+# void
 # class ChildSerializer(serializers.HyperlinkedModelSerializer):
 #     class Meta:
 #         model= Child
