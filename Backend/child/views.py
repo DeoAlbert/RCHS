@@ -52,10 +52,7 @@ def getChildSummary(request):
     response_data = {
         'children': children_data_Serializer.data,
         'children_visits': children_visit_data_Serializer.data,
-        #'children_ages': children_ages
-        # 'other': {
-        #     'children_ages': children_ages
-        # }
+        
     }
 
     return Response(response_data)
