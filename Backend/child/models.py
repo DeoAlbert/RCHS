@@ -9,6 +9,7 @@ class Child(models.Model):
     child_name = models.CharField(max_length=255)
     healthcare_centre_name = models.CharField(max_length=255)
     mother = models.ForeignKey(Mother, on_delete=models.CASCADE)
+    mother_name = models.CharField(max_length=255)
     child_number = models.IntegerField()
     child_gender = models.CharField(max_length=255)
     date_of_birth = models.DateField()
@@ -51,6 +52,7 @@ class Child_visit(models.Model):
 # basic VISIT details
     # date_same_as_before = models.DateField()
     weight_grams = models.IntegerField()  #Weight (Grams)
+    height = models.IntegerField(max_length=255) # height (cm)
     anemia = models.CharField(max_length=255) # Anemia (Hb or palmar pallor)
     body_temperature = models.IntegerField() # Body temperature (°C)
 

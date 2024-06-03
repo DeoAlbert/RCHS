@@ -38,11 +38,24 @@ def getChildSummary(request):
     # Extract weight and height from Child_visit objects
     children_visits_data = Child_visit.objects.all()
     children_visit_data_Serializer = ChildVisitSummarySerializer(children_visits_data, many = True)
+
+    # Extract ages to add to 'other' part of the response
+    children_ages = [
+        {
+            'child_name': child.child_name,
+            'age': ChildSummarySerializer(child).data['age']
+        }
+        for child in children_data
+    ]
     
     # Construct the response data
     response_data = {
         'children': children_data_Serializer.data,
-        'children_visits': children_visit_data_Serializer.data
+        'children_visits': children_visit_data_Serializer.data,
+        #'children_ages': children_ages
+        # 'other': {
+        #     'children_ages': children_ages
+        # }
     }
 
     return Response(response_data)
