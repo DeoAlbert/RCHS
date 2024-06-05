@@ -32,6 +32,8 @@ class Mother_visit(models.Model):
 
     #Foreign key.
     mother=models.ForeignKey('Mother', on_delete=models.CASCADE)
+    mother_name = models.CharField(max_length=255)
+
     
     # Visit details
     visit_number = models.IntegerField()
