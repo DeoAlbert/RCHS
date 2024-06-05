@@ -27,6 +27,8 @@ class Child_visit(models.Model):
 
 # Foreign key:
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    child_name = models.CharField(max_length=255)
+
 
 # The child must have a visit number
     visit_number = models.IntegerField()

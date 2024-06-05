@@ -32,10 +32,74 @@ class ChildSerializer(serializers.HyperlinkedModelSerializer):
         return child
 
 
+# class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model= Child_visit
+#         fields= "__all__"
+
 class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
+    child_name = serializers.CharField()
+    child = serializers.HyperlinkedRelatedField(view_name='child-detail', read_only = True)
+
     class Meta:
-        model= Child_visit
-        fields= "__all__"
+        model = Child_visit
+        fields = [
+            'url',
+            'id',  # Primary key, automatically added by Django
+            'child',
+            'child_name',
+            'visit_number',
+            'date',
+            'child_growth_and_development_status',
+            'return_date',
+            'bcg_tuberculosis_injection_right_shoulder',
+            'polio',
+            'dpt_hep_b',
+            'pneumococcal',
+            'rota',
+            'measles',
+            'vitamin_a',
+            'deworming_medication',
+            'weight_grams',
+            'height',
+            'anemia',
+            'body_temperature',
+            'exclusive_breastfeeding',
+            'replacement_milk',
+            'unable_to_breastfeed',
+            'child_play',
+            'eyes',
+            'mouth',
+            'ears',
+            'navel_healed',
+            'navel_red',
+            'navel_discharge_odor',
+            'has_pus_filled_bumps',
+            'has_turned_yellow',
+            'received_bcg',
+            'received_polio_0',
+            'received_polio_1',
+            'received_dtp_hep_hib',
+            'received_pneumococcal',
+            'received_rota',
+            'name_of_attendant',
+            'attendant_title',
+            'other_issues',]
+    
+        extra_kwargs = {
+            'child': {'read_only': True}
+        }
+
+    def create(self, validated_data):
+        child_name = validated_data.pop('child_name')
+        try:
+            child = Child.objects.get(child_name=child_name)
+        except Child.DoesNotExist:
+            raise serializers.ValidationError(f"Child with name {child_name} does not exist.")
+        
+        child_visit = Child_visit.objects.create(child=child, child_name = child_name,**validated_data)
+        return child_visit
+
 
 class ChildConsultationVisitSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
