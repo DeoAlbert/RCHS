@@ -52,7 +52,7 @@ class Child_visit(models.Model):
 # basic VISIT details
     # date_same_as_before = models.DateField()
     weight_grams = models.IntegerField()  #Weight (Grams)
-    height = models.IntegerField(max_length=255) # height (cm)
+    height = models.IntegerField() # height (cm)
     anemia = models.CharField(max_length=255) # Anemia (Hb or palmar pallor)
     body_temperature = models.IntegerField() # Body temperature (°C)
 
