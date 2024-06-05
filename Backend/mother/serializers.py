@@ -1,15 +1,6 @@
 from rest_framework import serializers
 from .models import Mother, Mother_visit
 
-# class MotherSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model= Mother
-#         fields= "__all__"
-
-
-
-    
-
 class MotherSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Mother
