@@ -36,7 +36,7 @@ class Mother_visit(models.Model):
 
     
     # Visit details
-    visit_number = models.IntegerField()
+    visit_number = models.CharField(max_length=255)
     visit_date = models.DateField()
 
     # Section 2: Health Measurements
