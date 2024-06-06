@@ -146,7 +146,7 @@ class ChildSummarySerializer(serializers.ModelSerializer):
     age = serializers.SerializerMethodField()
     class Meta:
         model = Child
-        fields = ['child_name', 'child_gender', 'mother_name', 'age']
+        fields = ['id','child_name', 'child_gender', 'mother_name', 'age']
     
     def get_age(self, obj):
         today = date.today()

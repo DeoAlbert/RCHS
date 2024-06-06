@@ -64,20 +64,32 @@ def getChildSummary(request):
 
     for child in children_data:
         child_serializer = ChildSummarySerializer(child)
-        visits = Child_visit.objects.filter(child=child)
-        visit_serializer = ChildVisitSummarySerializer(visits, many=True)
+        latest_visit = Child_visit.objects.filter(child=child).order_by('-date').first()
+        if latest_visit:
+            visit_serializer = ChildVisitSummarySerializer(latest_visit)
 
-        for visit in visit_serializer.data:
             combined_data = {
+                'id':child_serializer.data['id'],
                 'child_name': child_serializer.data['child_name'],
                 'child_gender': child_serializer.data['child_gender'],
                 'mother_name': child_serializer.data['mother_name'],
                 'age': child_serializer.data['age'],
-                'weight_grams': visit['weight_grams'],
-                'height': visit['height'],
-                'date': visit['date'],
+                'weight_grams': visit_serializer.data['weight_grams'],
+                'height': visit_serializer.data['height'],
+                'date': visit_serializer.data['date'],
+            }
+            response_data.append(combined_data)
+        else:
+            combined_data = {
+                'id':child_serializer.data['id'],
+                'child_name': child_serializer.data['child_name'],
+                'child_gender': child_serializer.data['child_gender'],
+                'mother_name': child_serializer.data['mother_name'],
+                'age': child_serializer.data['age'],
+                'weight_grams': None,
+                'height': None,
+                'date': None,
             }
             response_data.append(combined_data)
 
     return Response(response_data)
-
