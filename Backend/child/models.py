@@ -96,6 +96,10 @@ class Child_visit(models.Model):
 
 
 class Consultation_Visit_Child(models.Model):
+    
+    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    child_name = models.CharField(max_length=255)
+
     date = models.DateField()
     visit_type = models.CharField(max_length=255)
     weight = models.CharField(max_length=255)

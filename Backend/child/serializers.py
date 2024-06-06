@@ -101,10 +101,45 @@ class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
         return child_visit
 
 
+# class ChildConsultationVisitSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model= Consultation_Visit_Child
+#         fields= "__all__"
+
 class ChildConsultationVisitSerializer(serializers.HyperlinkedModelSerializer):
+    child_name = serializers.CharField()
+    child = serializers.HyperlinkedRelatedField(view_name='child-detail', read_only = True)
+
     class Meta:
-        model= Consultation_Visit_Child
-        fields= "__all__"
+        model = Consultation_Visit_Child
+        fields = [
+            'url',
+            'id', 
+            'child',
+            'child_name',
+            'date',
+            'visit_type',
+            'weight', 
+            'height',    
+            'temperature',    
+            'other',
+            'test_results', 
+            'additional_notes'
+            ]
+    
+        extra_kwargs = {
+            'child': {'read_only': True}
+        }
+
+    def create(self, validated_data):
+        child_name = validated_data.pop('child_name')
+        try:
+            child = Child.objects.get(child_name=child_name)
+        except Child.DoesNotExist:
+            raise serializers.ValidationError(f"Child with name {child_name} does not exist.")
+        
+        consultation_Visit_Child = Consultation_Visit_Child.objects.create(child=child, child_name = child_name,**validated_data)
+        return consultation_Visit_Child
 
 class ChildSummarySerializer(serializers.ModelSerializer):
 
