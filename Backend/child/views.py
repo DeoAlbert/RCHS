@@ -36,12 +36,13 @@ def getChildSummary(request):
     response_data = []
 
     for child in children_data:
-        child_serializer = ChildSummarySerializer(child)
+        child_serializer = ChildSummarySerializer(child, context={'request': request})
         latest_visit = Child_visit.objects.filter(child=child).order_by('-date').first()
         if latest_visit:
-            visit_serializer = ChildVisitSummarySerializer(latest_visit)
+            visit_serializer = ChildVisitSummarySerializer(latest_visit,context={'request': request})
 
             combined_data = {
+                'url':child_serializer.data['url'],
                 'id':child_serializer.data['id'],
                 'child_name': child_serializer.data['child_name'],
                 'child_gender': child_serializer.data['child_gender'],
@@ -56,6 +57,7 @@ def getChildSummary(request):
             response_data.append(combined_data)
         else:
             combined_data = {
+                'url':child_serializer.data['url'],
                 'id':child_serializer.data['id'],
                 'child_name': child_serializer.data['child_name'],
                 'child_gender': child_serializer.data['child_gender'],

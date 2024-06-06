@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Mother, Mother_visit
+from datetime import date
+
 
 class MotherSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -97,35 +99,35 @@ class MotherVisitSerializer(serializers.HyperlinkedModelSerializer):
         return mother_visit
 
 
+# class MotherSummarySerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Mother
+#         fields = ['mother_name', 'mother_age']
+
 class MotherSummarySerializer(serializers.ModelSerializer):
+
+    age = serializers.SerializerMethodField()
     class Meta:
         model = Mother
-        fields = ['mother_name', 'mother_age']
-
-# class ChildSummarySerializer(serializers.ModelSerializer):
-
-#     age = serializers.SerializerMethodField()
-#     class Meta:
-#         model = Child
-#         fields = ['id','child_name', 'child_gender', 'mother_name', 'age', 'partner_name']
+        fields = ['id', 'mother_name', 'age', 'partner_name']
     
-#     def get_age(self, obj):
-#         today = date.today()
-#         # Calculate the difference in years
-#         year_difference = today.year - obj.date_of_birth.year
-#         # Calculate the difference in months
-#         month_difference = today.month - obj.date_of_birth.month
-#         # Calculate the difference in days
-#         day_difference = today.day - obj.date_of_birth.day
+    def get_age(self, obj):
+        today = date.today()
+        # Calculate the difference in years
+        year_difference = today.year - obj.date_of_birth.year
+        # Calculate the difference in months
+        month_difference = today.month - obj.date_of_birth.month
+        # Calculate the difference in days
+        day_difference = today.day - obj.date_of_birth.day
         
-#         # Adjust year and month differences if needed
-#         if day_difference < 0:
-#             month_difference -= 1
-#         if month_difference < 0:
-#             year_difference -= 1
-#             month_difference += 12
+        # Adjust year and month differences if needed
+        if day_difference < 0:
+            month_difference -= 1
+        if month_difference < 0:
+            year_difference -= 1
+            month_difference += 12
         
-#         return f"{year_difference} years, {month_difference} months"
+        return f"{year_difference} years, {month_difference} months"
 
 class MotherVisitSummarySerializer(serializers.ModelSerializer):
     class Meta:

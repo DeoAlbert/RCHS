@@ -141,12 +141,12 @@ class ChildConsultationVisitSerializer(serializers.HyperlinkedModelSerializer):
         consultation_Visit_Child = Consultation_Visit_Child.objects.create(child=child, child_name = child_name,**validated_data)
         return consultation_Visit_Child
 
-class ChildSummarySerializer(serializers.ModelSerializer):
+class ChildSummarySerializer(serializers.HyperlinkedModelSerializer):
 
     age = serializers.SerializerMethodField()
     class Meta:
         model = Child
-        fields = ['id','child_name', 'child_gender', 'mother_name', 'age']
+        fields = ['url','id','child_name', 'child_gender', 'mother_name', 'age']
     
     def get_age(self, obj):
         today = date.today()
@@ -166,7 +166,7 @@ class ChildSummarySerializer(serializers.ModelSerializer):
         
         return f"{year_difference} years, {month_difference} months"
 
-class ChildVisitSummarySerializer(serializers.ModelSerializer):
+class ChildVisitSummarySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Child_visit
         fields = ['weight_grams','height','date','visit_number']
