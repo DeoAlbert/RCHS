@@ -169,7 +169,7 @@ class ChildSummarySerializer(serializers.ModelSerializer):
 class ChildVisitSummarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Child_visit
-        fields = ['weight_grams','height','date']
+        fields = ['weight_grams','height','date','visit_number']
 
 
 

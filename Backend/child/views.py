@@ -30,33 +30,6 @@ class ChildConsultationVisitView(viewsets.ModelViewSet):
     #permission_classes=[permissions.IsAuthenticated]
 
 
-# @api_view(['GET'])
-# def getChildSummary(request):
-#     children_data = Child.objects.all()
-#     children_data_Serializer = ChildSummarySerializer(children_data, many = True)
-    
-#     # Extract weight and height from Child_visit objects
-#     children_visits_data = Child_visit.objects.all()
-#     children_visit_data_Serializer = ChildVisitSummarySerializer(children_visits_data, many = True)
-
-#     # Extract ages to add to 'other' part of the response
-#     children_ages = [
-#         {
-#             'child_name': child.child_name,
-#             'age': ChildSummarySerializer(child).data['age']
-#         }
-#         for child in children_data
-#     ]
-    
-#     # Construct the response data
-#     response_data = {
-#         'children': children_data_Serializer.data,
-#         'children_visits': children_visit_data_Serializer.data,
-        
-#     }
-
-#     return Response(response_data)
-
 @api_view(['GET'])
 def getChildSummary(request):
     children_data = Child.objects.all()
@@ -77,6 +50,8 @@ def getChildSummary(request):
                 'weight_grams': visit_serializer.data['weight_grams'],
                 'height': visit_serializer.data['height'],
                 'date': visit_serializer.data['date'],
+                'visit_number': visit_serializer.data['visit_number']
+
             }
             response_data.append(combined_data)
         else:
@@ -89,6 +64,8 @@ def getChildSummary(request):
                 'weight_grams': None,
                 'height': None,
                 'date': None,
+                'visit_number': None
+
             }
             response_data.append(combined_data)
 
