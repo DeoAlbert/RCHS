@@ -169,7 +169,7 @@ class ChildSummarySerializer(serializers.HyperlinkedModelSerializer):
 class ChildVisitSummarySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Child_visit
-        fields = ['weight_grams','height','date','visit_number']
+        fields = ['id','weight_grams','height','date','visit_number']
 
 
 

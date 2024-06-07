@@ -52,6 +52,7 @@ def getMotherSummary(request):
             combined_data = {
                 'url':mother_serializer.data['url'],
                 'id':mother_serializer.data['id'],
+                'mother_visit_id':visit_serializer.data['id'],
                 'mother_name': mother_serializer.data['mother_name'],
                 'mother_age': mother_serializer.data['mother_age'],
                 'partner_name': mother_serializer.data['partner_name'],
@@ -64,6 +65,7 @@ def getMotherSummary(request):
             combined_data = {
                 'url':mother_serializer.data['url'],
                 'id':mother_serializer.data['id'],
+                'mother_visit_id':None,
                 'mother_name': mother_serializer.data['mother_name'],
                 'mother_age': mother_serializer.data['mother_age'],
                 'partner_name': mother_serializer.data['partner_name'],

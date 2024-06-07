@@ -106,4 +106,4 @@ class MotherSummarySerializer(serializers.HyperlinkedModelSerializer):
 class MotherVisitSummarySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Mother_visit
-        fields = ['visit_number', 'visit_date']
+        fields = ['id','visit_number', 'visit_date']
