@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Child, Child_visit, Consultation_Visit_Child
 from .serializers import ChildSerializer, ChildVisitSerializer, ChildConsultationVisitSerializer, ChildSummarySerializer, ChildVisitSummarySerializer
+from datetime import date
+
 
 # Create your views here.
 
@@ -72,3 +74,30 @@ def getChildSummary(request):
             response_data.append(combined_data)
 
     return Response(response_data)
+
+
+@api_view(['GET'])
+def childStatistics(request):
+    total_children = Child.objects.count()
+    total_male_children = Child.objects.filter(child_gender__iexact='Male').count()
+    total_female_children = Child.objects.filter(child_gender__iexact='Female').count()
+
+    # Calculate average age
+    today = date.today()
+    children = Child.objects.all()
+    
+    age_sum = sum((today.year - child.date_of_birth.year) * 12 + today.month - child.date_of_birth.month for child in children)
+    average_age_months = age_sum / total_children if total_children > 0 else 0
+    average_age_years = average_age_months // 12
+    average_age_remainder_months = average_age_months % 12
+
+    average_age = f"{int(average_age_years)} years, {int(average_age_remainder_months)} months"
+
+    data = {
+        'total_children': total_children,
+        'total_male_children': total_male_children,
+        'total_female_children': total_female_children,
+        'average_age': average_age,
+    }
+
+    return Response(data)
