@@ -15,9 +15,11 @@ class Child(models.Model):
     date_of_birth = models.DateField()
     weight_at_birth = models.IntegerField()
     length_at_birth = models.IntegerField()
-    place_of_birth = models.CharField(max_length=255)
+    birth_region = models.CharField(max_length=255)
+    birth_district = models.CharField(max_length=255)
+    residential_region = models.CharField(max_length=255)
+    residential_district = models.CharField(max_length=255)
     maternal_health_worker = models.CharField(max_length=255)
-    child_residence = models.CharField(max_length=255)
 
     def __str__(self):
         return self.child_name

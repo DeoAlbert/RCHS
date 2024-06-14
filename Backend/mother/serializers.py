@@ -16,19 +16,21 @@ class MotherSerializer(serializers.HyperlinkedModelSerializer):
             'mother_age',
             'mother_education',
             'mother_employment',
-            'Height',
+            'height',
             'partner_name',
             'partner_age',
             'partner_work',
             'partner_education',
-            'address',
+            'residential_region',
+            'residential_district',
             'Chairperson_name',
             'pregnancies',
             'alive_children',
             'miscarriages',
             'births',
-            'miscarriage_age',
-            'miscarriage_year',
+            'registrant_type',
+            'parent_type',
+            'gender'
         ]
 
 

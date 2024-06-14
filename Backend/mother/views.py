@@ -61,4 +61,14 @@ def getMotherSummary(request):
     return Response(response_data)
 
 
+@api_view(['GET'])
+def getParentStatistics(request):
+    total_parents = Mother.objects.count()
+
+    data = {
+        'total_parents': total_parents
+    }
+
+    return Response(data)
+
     

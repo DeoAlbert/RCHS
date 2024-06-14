@@ -16,7 +16,7 @@ class ChildSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Child
-        fields = ['url', 'id', 'child_name', 'healthcare_centre_name', 'mother_name', 'mother', 'child_number', 'child_gender', 'date_of_birth', 'weight_at_birth', 'length_at_birth', 'place_of_birth', 'maternal_health_worker', 'child_residence']
+        fields = ['url', 'id', 'child_name', 'healthcare_centre_name', 'mother_name', 'mother', 'child_number', 'child_gender', 'date_of_birth', 'weight_at_birth', 'length_at_birth', 'birth_region', 'birth_district', 'residential_region','residential_district','maternal_health_worker']
         extra_kwargs = {
             'mother': {'read_only': True}
         }
