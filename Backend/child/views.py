@@ -10,6 +10,9 @@ from rest_framework.decorators import api_view
 from .models import Child, Child_visit, Consultation_Visit_Child
 from .serializers import ChildSerializer, ChildVisitSerializer, ChildConsultationVisitSerializer, ChildSummarySerializer, ChildVisitSummarySerializer
 from datetime import date
+from django.db.models import Count, Q, F
+from rest_framework.views import APIView
+
 
 
 # Create your views here.
@@ -103,3 +106,29 @@ def childStatistics(request):
     }
 
     return Response(data)
+
+
+
+class AggregatedDataSummaryView(APIView):
+    def get(self, request, format=None):
+        # Total number of children
+        total_children = Child.objects.count()
+
+        # Number of boys and girls
+        boys_count = Child.objects.filter(child_gender='Male').count()
+        girls_count = Child.objects.filter(child_gender='Female').count()
+
+        # Number of children with stunted growth
+        stunted_growth_count = Child_visit.objects.filter(
+            Q(height__lt=F('child__length_at_birth') + 10)  # Example condition
+        ).count()
+
+        # Aggregated data response
+        data = {
+            'total_children': total_children,
+            'boys_count': boys_count,
+            'girls_count': girls_count,
+            'stunted_growth_count': stunted_growth_count,
+        }
+
+        return Response(data, status=status.HTTP_200_OK)
