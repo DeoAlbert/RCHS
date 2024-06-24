@@ -30,7 +30,8 @@ class MotherSerializer(serializers.HyperlinkedModelSerializer):
             'births',
             'registrant_type',
             'parent_type',
-            'gender'
+            'gender',
+            'phone'
         ]
 
 
