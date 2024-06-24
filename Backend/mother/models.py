@@ -75,7 +75,6 @@ class Mother_visit(models.Model):
     uterus_pain = models.CharField(max_length=255)
 
     # Section 5: Incision / Surgical wound
-    incision_did_not_tear = models.CharField(max_length=255)
     incision_type = models.CharField(max_length=255)
     wound_healed = models.CharField(max_length=255)
     pus = models.CharField(max_length=255)

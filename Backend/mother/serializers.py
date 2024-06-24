@@ -62,7 +62,6 @@ class MotherVisitSerializer(serializers.HyperlinkedModelSerializer):
             'breastfeeding_advice',
             'uterus_shrinking',
             'uterus_pain',
-            'incision_did_not_tear',
             'incision_type',
             'wound_healed',
             'pus',

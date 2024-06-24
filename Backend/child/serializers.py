@@ -48,23 +48,17 @@ class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
             'child',
             'child_name',
             'visit_number',
+            'visit_phase',
             'date',
             'child_growth_and_development_status',
             'return_date',
-            'bcg_tuberculosis_injection_right_shoulder',
-            'polio',
-            'dpt_hep_b',
-            'pneumococcal',
-            'rota',
-            'measles',
             'vitamin_a',
             'deworming_medication',
             'weight_grams',
             'height',
             'anemia',
             'body_temperature',
-            'exclusive_breastfeeding',
-            'replacement_milk',
+            'infant_nutrition',
             'unable_to_breastfeed',
             'child_play',
             'eyes',
@@ -83,7 +77,9 @@ class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
             'received_rota',
             'name_of_attendant',
             'attendant_title',
-            'other_issues',]
+            'hb_percentage',
+            'bmi',
+            ]
     
         extra_kwargs = {
             'child': {'read_only': True}
