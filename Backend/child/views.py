@@ -160,7 +160,15 @@ def get_child_nutrition_recomendations(request):
             age_in_days = (visit_date - birth_date).days
             sex = 'M' if child.child_gender.lower() == 'male' else 'F'
             
-            score = z_score_with_class(weight=str(weight), muac="13.5", age_in_days=str(age_in_days), sex=sex, height=str(height))
+            try:
+                score = z_score_with_class(weight=str(weight), muac="13.5", age_in_days=str(age_in_days), sex=sex, height=str(height))
+            except Exception as e:
+                if str(e) == "too short":
+                    return JsonResponse({
+                        'error': 'The inputs are too small to be realistic. It is either the child has a health issue or there are wrong inputs.'
+                    }, status=400)
+                else:
+                    return JsonResponse({'error': 'An error occurred during the Z-score calculation.'}, status=500)
 
             # Parse the JSON string into a dictionary
             score_data = json.loads(score)
@@ -172,21 +180,33 @@ def get_child_nutrition_recomendations(request):
                            '6 to 12 months' if age_in_days <= 365 else \
                            '1 to 3 years' if age_in_days <= 1095 else '3 to 5 years'
             
-            classification = f"{class_hfa} && {age_category}"
+            classification = f"{class_hfa} && {age_category} && {sex}"
             
             response_text = {
-                'Healthy && 0 to 6 months': "The child is healthy and is within the first 6 months of age.",
-                'Healthy && 6 to 12 months': "The child is healthy and is between 6 to 12 months old.",
-                'Healthy && 1 to 3 years': "The child is healthy and is between 1 to 3 years old.",
-                'Healthy && 3 to 5 years': "The child is healthy and is between 3 to 5 years old.",
-                'Moderately Stunted && 0 to 6 months': "The child is moderately stunted and is within the first 6 months of age.",
-                'Moderately Stunted && 6 to 12 months': "The child is moderately stunted and is between 6 to 12 months old.",
-                'Moderately Stunted && 1 to 3 years': "The child is moderately stunted and is between 1 to 3 years old.",
-                'Moderately Stunted && 3 to 5 years': "The child is moderately stunted and is between 3 to 5 years old.",
-                'Severely Stunted && 0 to 6 months': "The child is severely stunted and is within the first 6 months of age.",
-                'Severely Stunted && 6 to 12 months': "The child is severely stunted and is between 6 to 12 months old.",
-                'Severely Stunted && 1 to 3 years': "The child is severely stunted and is between 1 to 3 years old.",
-                'Severely Stunted && 3 to 5 years': "The child is severely stunted and is between 3 to 5 years old."
+                'Healthy && 0 to 6 months && F': "The female child is healthy and is within the first 6 months of age.",
+                'Healthy && 6 to 12 months && F': "The female child is healthy and is between 6 to 12 months old.",
+                'Healthy && 1 to 3 years && F': "The female child is healthy and is between 1 to 3 years old.",
+                'Healthy && 3 to 5 years && F': "The female child is healthy and is between 3 to 5 years old.",
+                'Healthy && 0 to 6 months && M': "The male child is healthy and is within the first 6 months of age.",
+                'Healthy && 6 to 12 months && M': "The male child is healthy and is between 6 to 12 months old.",
+                'Healthy && 1 to 3 years && M': "The male child is healthy and is between 1 to 3 years old.",
+                'Healthy && 3 to 5 years && M': "The male child is healthy and is between 3 to 5 years old.",
+                'Moderately Stunted && 0 to 6 months && F': "The female child is moderately stunted and is within the first 6 months of age.",
+                'Moderately Stunted && 6 to 12 months && F': "The female child is moderately stunted and is between 6 to 12 months old.",
+                'Moderately Stunted && 1 to 3 years && F': "The female child is moderately stunted and is between 1 to 3 years old.",
+                'Moderately Stunted && 3 to 5 years && F': "The female child is moderately stunted and is between 3 to 5 years old.",
+                'Moderately Stunted && 0 to 6 months && M': "The male child is moderately stunted and is within the first 6 months of age.",
+                'Moderately Stunted && 6 to 12 months && M': "The male child is moderately stunted and is between 6 to 12 months old.",
+                'Moderately Stunted && 1 to 3 years && M': "The male child is moderately stunted and is between 1 to 3 years old.",
+                'Moderately Stunted && 3 to 5 years && M': "The male child is moderately stunted and is between 3 to 5 years old.",
+                'Severely Stunted && 0 to 6 months && F': "The female child is severely stunted and is within the first 6 months of age.",
+                'Severely Stunted && 6 to 12 months && F': "The female child is severely stunted and is between 6 to 12 months old.",
+                'Severely Stunted && 1 to 3 years && F': "The female child is severely stunted and is between 1 to 3 years old.",
+                'Severely Stunted && 3 to 5 years && F': "The female child is severely stunted and is between 3 to 5 years old.",
+                'Severely Stunted && 0 to 6 months && M': "The male child is severely stunted and is within the first 6 months of age.",
+                'Severely Stunted && 6 to 12 months && M': "The male child is severely stunted and is between 6 to 12 months old.",
+                'Severely Stunted && 1 to 3 years && M': "The male child is severely stunted and is between 1 to 3 years old.",
+                'Severely Stunted && 3 to 5 years && M': "The male child is severely stunted and is between 3 to 5 years old."
             }
 
             response_message = response_text.get(classification, "Classification not found.")
@@ -198,6 +218,43 @@ def get_child_nutrition_recomendations(request):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
+
+# import logging
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+# from .models import Child
+# from cgmzscore.src.main import z_score_with_class
+
+# logger = logging.getLogger(__name__)
+
+# @csrf_exempt
+# def get_child_nutrition_recomendations(request):
+#     if request.method == 'POST':
+#         try:
+#             data = json.loads(request.body)
+#             registration_number = data.get('registration_number')
+            
+#             child = Child.objects.get(child_number=registration_number)
+#             weight = child.weight_at_birth
+#             age_in_days = (date.today() - child.date_of_birth).days
+#             sex = 'M' if child.child_gender == 'Male' else 'F'
+#             height = child.length_at_birth
+
+#             logger.info(f"Weight: {weight}, Age in days: {age_in_days}, Sex: {sex}, Height: {height}")
+
+#             score = z_score_with_class(weight=str(weight), muac="13.5", age_in_days=str(age_in_days), sex=sex, height=str(height))
+            
+#             return JsonResponse({'z_score': score})
+
+#         except Child.DoesNotExist:
+#             return JsonResponse({'error': 'Child not found.'}, status=404)
+#         except Exception as e:
+#             logger.error(f"An error occurred: {e}")
+#             if str(e) == "too short":
+#                 return JsonResponse({'error': 'The input values are too short.'}, status=400)
+#             return JsonResponse({'error': 'An error occurred while calculating the Z-score.'}, status=500)
+#     else:
+#         return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 
 
