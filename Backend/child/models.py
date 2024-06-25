@@ -33,7 +33,7 @@ class Child_visit(models.Model):
 
 
 # The child must have a visit number
-    visit_number = models.IntegerField()
+    visit_number = models.CharField(max_length=255)
     visit_phase = models.CharField(max_length=255)
 
 
@@ -41,14 +41,6 @@ class Child_visit(models.Model):
     date = models.DateField()
     child_growth_and_development_status = models.CharField(max_length=255)
     return_date = models.DateField()
-
-# VACCINATIONS (Write the Date Received)
-    # bcg_tuberculosis_injection_right_shoulder = models.CharField(max_length=255) #Bcg_tuberculosis_injection_in_the_right_shoulder
-    # polio = models.CharField(max_length=255) #Polio (Paralysis)_Drops/Orally
-    # dpt_hep_b = models.CharField(max_length=255) #DPT-Hep B(Diphtheria, Tetanus, Pertussis, and Hepatitis B) Injection in the Left Thigh
-    # pneumococcal = models.CharField(max_length=255) # PNEUMOCOCCAL-(Pneumonia) Injection in the Right Thigh
-    # rota = models.CharField(max_length=255) # ROTA- (Diarrhea) Drops Orally
-    # measles = models.CharField(max_length=255) # MEASLES Injection in the Right Thigh
 
 # VITAMIN A AND DEWORMING MEDICATION (Mark where applicable month)
     vitamin_a = models.CharField(max_length=255) # VITAMIN A Drops / Orally

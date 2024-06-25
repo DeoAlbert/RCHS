@@ -36,7 +36,6 @@ class Mother (models.Model):
     registrant_type = models.CharField(max_length=255)
     parent_type = models.CharField(max_length=255,null=True, blank=True)
     gender = models.CharField(max_length=255)
-
     phone = PhoneField(help_text='Contact phone number')
     # phone = PhoneField(unique=True,validators=[validate_tanzanian_phone], help_text='Contact phone number')
 
