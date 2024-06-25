@@ -34,6 +34,8 @@ class Child_visit(models.Model):
 
 # The child must have a visit number
     visit_number = models.IntegerField()
+    visit_phase = models.CharField(max_length=255)
+
 
 # The child must be weighed every month.
     date = models.DateField()
@@ -41,12 +43,12 @@ class Child_visit(models.Model):
     return_date = models.DateField()
 
 # VACCINATIONS (Write the Date Received)
-    bcg_tuberculosis_injection_right_shoulder = models.CharField(max_length=255) #Bcg_tuberculosis_injection_in_the_right_shoulder
-    polio = models.CharField(max_length=255) #Polio (Paralysis)_Drops/Orally
-    dpt_hep_b = models.CharField(max_length=255) #DPT-Hep B(Diphtheria, Tetanus, Pertussis, and Hepatitis B) Injection in the Left Thigh
-    pneumococcal = models.CharField(max_length=255) # PNEUMOCOCCAL-(Pneumonia) Injection in the Right Thigh
-    rota = models.CharField(max_length=255) # ROTA- (Diarrhea) Drops Orally
-    measles = models.CharField(max_length=255) # MEASLES Injection in the Right Thigh
+    # bcg_tuberculosis_injection_right_shoulder = models.CharField(max_length=255) #Bcg_tuberculosis_injection_in_the_right_shoulder
+    # polio = models.CharField(max_length=255) #Polio (Paralysis)_Drops/Orally
+    # dpt_hep_b = models.CharField(max_length=255) #DPT-Hep B(Diphtheria, Tetanus, Pertussis, and Hepatitis B) Injection in the Left Thigh
+    # pneumococcal = models.CharField(max_length=255) # PNEUMOCOCCAL-(Pneumonia) Injection in the Right Thigh
+    # rota = models.CharField(max_length=255) # ROTA- (Diarrhea) Drops Orally
+    # measles = models.CharField(max_length=255) # MEASLES Injection in the Right Thigh
 
 # VITAMIN A AND DEWORMING MEDICATION (Mark where applicable month)
     vitamin_a = models.CharField(max_length=255) # VITAMIN A Drops / Orally
@@ -61,8 +63,7 @@ class Child_visit(models.Model):
     body_temperature = models.IntegerField() # Body temperature (°C)
 
 # CHILD'S NUTRITION:
-    exclusive_breastfeeding = models.CharField(max_length=255)# Exclusive breastfeeding (EBF)
-    replacement_milk = models.CharField(max_length=255) # Replacement milk (RF)
+    infant_nutrition = models.CharField(max_length=255)# Exclusive breastfeeding (EBF), Replacement milk (RF)
     unable_to_breastfeed = models.CharField(max_length=255) # Unable to breastfeed
     child_play = models.CharField(max_length=255) # Observe the child's play. Is it less than usual?
     eyes = models.CharField(max_length=255) # Eyes - Are there any discharge?
@@ -90,8 +91,8 @@ class Child_visit(models.Model):
     name_of_attendant = models.CharField(max_length=255) 
     attendant_title = models.CharField(max_length=255)
 
-# Explain any other issues
-    other_issues = models.CharField(max_length=255)
+    hb_percentage = models.IntegerField() 
+    bmi = models.IntegerField()
   
     def __str__(self):
         return str(self.visit_number)
