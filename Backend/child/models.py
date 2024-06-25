@@ -39,7 +39,7 @@ class Child_visit(models.Model):
 
 # The child must be weighed every month.
     date = models.DateField()
-    child_growth_and_development_status = models.CharField(max_length=255)
+    # child_growth_and_development_status = models.CharField(max_length=255)
     return_date = models.DateField()
 
 # VITAMIN A AND DEWORMING MEDICATION (Mark where applicable month)
@@ -49,10 +49,10 @@ class Child_visit(models.Model):
 # Please mark ( ) if yes / (X) if no. Check the following when you find anything unusual and take the child to the doctor.
 # basic VISIT details
     # date_same_as_before = models.DateField()
-    weight_grams = models.IntegerField()  #Weight (Grams)
-    height = models.IntegerField() # height (cm)
+    weight_grams = models.FloatField()  #Weight (Grams)
+    height = models.FloatField() # height (cm)
     anemia = models.CharField(max_length=255) # Anemia (Hb or palmar pallor)
-    body_temperature = models.IntegerField() # Body temperature (°C)
+    body_temperature = models.FloatField() # Body temperature (°C)
 
 # CHILD'S NUTRITION:
     infant_nutrition = models.CharField(max_length=255)# Exclusive breastfeeding (EBF), Replacement milk (RF)
@@ -83,8 +83,8 @@ class Child_visit(models.Model):
     name_of_attendant = models.CharField(max_length=255) 
     attendant_title = models.CharField(max_length=255)
 
-    hb_percentage = models.IntegerField() 
-    bmi = models.IntegerField()
+    hb_percentage = models.FloatField() 
+    bmi = models.FloatField()
   
     def __str__(self):
         return str(self.visit_number)

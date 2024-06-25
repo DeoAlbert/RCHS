@@ -51,7 +51,6 @@ class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
             'visit_number',
             'visit_phase',
             'date',
-            'child_growth_and_development_status',
             'return_date',
             'vitamin_a',
             'deworming_medication',
