@@ -55,7 +55,7 @@ def getChildSummary(request):
 
             combined_data = {
                 'url':child_serializer.data['url'],
-                'child-id':child_serializer.data['id'],
+                'id':child_serializer.data['id'],
                 'child_visit_id':visit_serializer.data['id'],
                 'child_name': child_serializer.data['child_name'],
                 'child_gender': child_serializer.data['child_gender'],
