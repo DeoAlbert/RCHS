@@ -15,6 +15,7 @@ from rest_framework.views import APIView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Child, Child_visit
+from mother.models import Mother_visit, Mother
 from cgmzscore.src.main import z_score_with_class
 import json
 from datetime import date
@@ -117,26 +118,535 @@ def childStatistics(request):
 
 class AggregatedDataSummaryView(APIView):
     def get(self, request, format=None):
+               # General report details
+        from datetime import date, timedelta, datetime
+
+      
+        today = date.today()
+        current_month = today.month
+        current_year = today.year
+        
+        report_month = today.month
+        report_year = today.year
+        health_facility_name = "Example Health Facility"
+        district = "Example District"
+        report_preparer_name = "Jane Doe"
+        approved_by = "Dr. John Smith"
+        position = "Chief Medical Officer"
+        health_facility_phone_number = "+123456789"
+        designation = "Healthcare Center"
+        date_prepared = today
+        date_received_at_district = today
         # Total number of children
         total_children = Child.objects.count()
 
         # Number of boys and girls
+        total_mothers = Mother.objects.count()
+        Healthcare_worker = Child.objects.filter(maternal_health_worker='Healthcare Worker').count()
+        TBA = Child.objects.filter(maternal_health_worker='Traditional Birth Attendant (TBA)').count()
+        Others = Child.objects.filter(maternal_health_worker='Others').count()
         boys_count = Child.objects.filter(child_gender='Male').count()
         girls_count = Child.objects.filter(child_gender='Female').count()
 
+
+        # age_groups = [(10, 14), (15, 19), (20, 24), (25, 29), (30, 34), (35, 100)]
+
+        # def get_age_group_data(queryset):
+        #     data = {}
+        #     for age_min, age_max in age_groups:
+        #         count = queryset.filter(mother__mother_age__gte=age_min, mother__mother_age__lt=age_max).count()
+        #         data[f'{age_min}-{age_max if age_max != 100 else "+"}'] = count
+        #     return data
+
+   
+        # age_groups = [(10, 14), (15, 19), (20, 24), (25, 29), (30, 34), (35, 100)]
+
+        # def get_age_group_data(queryset):
+        #     data = {}
+        #     for age_min, age_max in age_groups:
+        #         count = queryset.filter(mother__mother_age__gte=age_min, mother__mother_age__lt=age_max).count()
+        #         data[f'{age_min}-{age_max if age_max != 100 else "+"}'] = count
+        #     return data
+
+        # # Section 1: Client Visits
+        # clients_attended_within_48_hours = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         visit_date__lte=F('mother__date_of_birth') + timedelta(days=2)
+        #     )
+        # )
+
+        # clients_attended_between_day_3_and_day_7 = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         visit_date__gt=F('mother__date_of_birth') + timedelta(days=2),
+        #         visit_date__lte=F('mother__date_of_birth') + timedelta(days=7)
+        #     )
+        # )
+
+        # total_clients_attended_first_7_days = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         visit_date__lte=F('mother__date_of_birth') + timedelta(days=7)
+        #     )
+        # )
+
+        # clients_completed_all_visits = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month
+        #     )
+        # )
+
+        # clients_with_severe_anemia = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         hb_percentage__lt=8.5
+        #     )
+        # )
+
+        # clients_with_complications = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         complications_after_childbirth=True
+        #     )
+        # )
+
+        # clients_with_convulsions = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         convulsions=True
+        #     )
+        # )
+
+        # clients_with_infected_stitches = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         infected_stitches=True
+        #     )
+        # )
+
+        # clients_with_fistula = get_age_group_data(
+        #     Mother_visit.objects.filter(
+        #         visit_date__year=current_year,
+        #         visit_date__month=current_month,
+        #         fistula=True
+        #     )
+        # )
         # Number of children with stunted growth
         stunted_growth_count = Child_visit.objects.filter(
             Q(height__lt=F('child__length_at_birth') + 10)  # Example condition
         ).count()
 
+        #Child Feeding
+        # children_data = Child.objects.all()
+        # filter(child=child).filter(child_gender="Male")
+        # for child in children_data:
+        exclusive_breastfeeding_total = Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
+        exclusive_breastfeeding_male=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
+        exclusive_breastfeeding_female=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
+        replacement_breastfeeding_total=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').count()
+        replacement_breastfeeding_male=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').count()
+        replacement_breastfeeding_female=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').count()
+        complementary_feeding_total=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').count()
+        complementary_feeding_male=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').count()
+        complementary_feeding_female=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').count()
+
+        # children_data = Child.objects.all()
+        # for child in children_data:
+        #     exclusive_breastfeeding_total = Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
+        #     exclusive_breastfeeding_male=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').filter(child=child).filter(child_gender="Male").count()
+        #     exclusive_breastfeeding_female=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').filter(child=child).filter(child_gender="Female").count()
+        #     replacement_breastfeeding_total=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').count()
+        #     replacement_breastfeeding_male=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').filter(child=child).filter(child_gender="Male").count()
+        #     replacement_breastfeeding_female=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').filter(child=child).filter(child_gender="Female").count()
+        #     complementary_feeding_total=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').count()
+        #     complementary_feeding_male=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').filter(child=child).filter(child_gender="Male").count()
+        #     complementary_feeding_female=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').filter(child=child).filter(child_gender="Female").count()
+
+
+
         # Aggregated data response
         data = {
+             # extra
+            'report_month': report_month,
+            'report_year': report_year,
+            'health_facility_name': health_facility_name,
+            'district': district,
+            'report_preparer_name': report_preparer_name,
+            'approved_by': approved_by,
+            'position': position,
+            'health_facility_phone_number': health_facility_phone_number,
+            'designation': designation,
+            'date_prepared': date_prepared,
+            'date_received_at_district': date_received_at_district,
+
+            'Healthcare_worker':Healthcare_worker,
+            'Others':Others,
+            'TBA' : TBA,
+            'parents': total_mothers,
             'total_children': total_children,
             'boys_count': boys_count,
             'girls_count': girls_count,
             'stunted_growth_count': stunted_growth_count,
-        }
 
+
+       
+
+  "section_1": {
+    "clients_attended_within_48_hours": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "clients_attended_between_day_3_and_day_7": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "total_clients_attended_first_7_days": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "clients_completed_all_visits": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "clients_with_severe_anemia": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "clients_with_complications_after_childbirth": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "clients_experienced_convulsions": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "clients_with_infected_stitches": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "clients_with_fistula": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    }
+  },
+  "section_2": {
+    "delivered_before_reaching_health_facility": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "delivered_by_TBA": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "delivered_at_home": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    }
+  },
+  "section_3": {
+    "received_family_planning_advice": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "received_condoms": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "received_pills_POP": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "received_implants_Implanon": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0,
+    },
+    "received_implants_jadelle": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "received_iud": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "sterilization_btl": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "referred_for_family_planning": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    }
+    },
+    "section_4": {
+    "came_for_postnatal_care_positive": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "tested_for_hiv_postnatal_care": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "found_hiv_postnatal_care": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "hiv_positive_ebf": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    },
+    "hiv_positive_rf": {
+      "10_14": 0,
+      "15_19": 0,
+      "20_24": 0,
+      "25_29": 0,
+      "30_34": 0,
+      "35_plus": 0,
+      "all_ages": 0
+    }
+  },
+  
+  "section_5": {
+    "children_attended_within_48_hours": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    },
+    "children_attended_between_day_3_and_day_7": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    },
+    "total_children_attended_first_7_days": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    },
+    "children_completed_all_visits": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    }
+  },
+  "section_6": {
+    "children_given_BCG": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    },
+    "children_given_OPV_0": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    },
+    "children_born_weighing_less_than_2.5kg_received_KMC": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    },
+    "children_born_at_home_weighing_less_than_2.5kg": {
+      "male": 0,
+      "female": 0,
+      "total": 0,
+     },
+    "children_born_at_home_started_KMC": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    },
+    "children_with_severe_anemia": {
+      "male": 0,
+      "female": 0,
+      "total": 0
+    }
+   },
+
+             'section_7': {
+                'severe_infection_t': 0,
+                'severe_infection_m': 0,
+                'severe_infection_f': 0,
+
+            },
+             'section_8': {
+                'umblical_infection_t': 0,
+                'umblical_infection': 0,
+                'umblical_infection_f': 0,
+
+            },
+          
+            'section_9': {
+                'skin_infection_t': 0,
+                'skin_infection_m': 0,
+                'skin_infection_f': 0,
+
+            },
+            'section_10': {
+                'jaundice_t': 0,
+                'jaundice_m': 0,
+                'jaundice_f': 0,
+
+            },
+            
+             'section_11': {
+                'newborn_deaths_t': 0,
+                'newborn_deaths_m': 0,
+                'newborn_deaths_f': 0,
+
+            },
+             'section_12': {
+                'ARV_drugs_t': 0,
+                'ARV_drugs_m': 0,
+                'ARV_drugs_f': 0,
+
+            },
+
+            'section_13': {
+                'newborns_exclusively_breastfed_t': exclusive_breastfeeding_total,
+                'newborns_exclusively_breastfed_m': exclusive_breastfeeding_male,
+                'newborns_exclusively_breastfed_f': exclusive_breastfeeding_female,
+
+            },
+            'section_14': {
+                'newborns_replacemently_breastfed_t': replacement_breastfeeding_total,
+                'newborns_replacemently_breastfed_m': replacement_breastfeeding_male,
+                'newborns_replacemently_breastfed_f': replacement_breastfeeding_female,
+
+            },
+            'section_15': {
+                'newborns_complementary_breastfed_t': complementary_feeding_total,
+                'newborns_complementary_breastfed_m': complementary_feeding_male,
+                'newborns_complementary_breastfed_f': complementary_feeding_female,
+
+            }
+            }   
         return Response(data, status=status.HTTP_200_OK)
 
 
