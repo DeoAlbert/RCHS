@@ -149,106 +149,12 @@ class AggregatedDataSummaryView(APIView):
         girls_count = Child.objects.filter(child_gender='Female').count()
 
 
-        # age_groups = [(10, 14), (15, 19), (20, 24), (25, 29), (30, 34), (35, 100)]
 
-        # def get_age_group_data(queryset):
-        #     data = {}
-        #     for age_min, age_max in age_groups:
-        #         count = queryset.filter(mother__mother_age__gte=age_min, mother__mother_age__lt=age_max).count()
-        #         data[f'{age_min}-{age_max if age_max != 100 else "+"}'] = count
-        #     return data
-
-   
-        # age_groups = [(10, 14), (15, 19), (20, 24), (25, 29), (30, 34), (35, 100)]
-
-        # def get_age_group_data(queryset):
-        #     data = {}
-        #     for age_min, age_max in age_groups:
-        #         count = queryset.filter(mother__mother_age__gte=age_min, mother__mother_age__lt=age_max).count()
-        #         data[f'{age_min}-{age_max if age_max != 100 else "+"}'] = count
-        #     return data
-
-        # # Section 1: Client Visits
-        # clients_attended_within_48_hours = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         visit_date__lte=F('mother__date_of_birth') + timedelta(days=2)
-        #     )
-        # )
-
-        # clients_attended_between_day_3_and_day_7 = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         visit_date__gt=F('mother__date_of_birth') + timedelta(days=2),
-        #         visit_date__lte=F('mother__date_of_birth') + timedelta(days=7)
-        #     )
-        # )
-
-        # total_clients_attended_first_7_days = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         visit_date__lte=F('mother__date_of_birth') + timedelta(days=7)
-        #     )
-        # )
-
-        # clients_completed_all_visits = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month
-        #     )
-        # )
-
-        # clients_with_severe_anemia = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         hb_percentage__lt=8.5
-        #     )
-        # )
-
-        # clients_with_complications = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         complications_after_childbirth=True
-        #     )
-        # )
-
-        # clients_with_convulsions = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         convulsions=True
-        #     )
-        # )
-
-        # clients_with_infected_stitches = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         infected_stitches=True
-        #     )
-        # )
-
-        # clients_with_fistula = get_age_group_data(
-        #     Mother_visit.objects.filter(
-        #         visit_date__year=current_year,
-        #         visit_date__month=current_month,
-        #         fistula=True
-        #     )
-        # )
         # Number of children with stunted growth
         stunted_growth_count = Child_visit.objects.filter(
             Q(height__lt=F('child__length_at_birth') + 10)  # Example condition
         ).count()
 
-        #Child Feeding
-        # children_data = Child.objects.all()
-        # filter(child=child).filter(child_gender="Male")
-        # for child in children_data:
         exclusive_breastfeeding_total = Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
         exclusive_breastfeeding_male=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
         exclusive_breastfeeding_female=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
