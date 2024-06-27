@@ -45,7 +45,7 @@ class Command(BaseCommand):
             message = str(message)
         
         try:
-            response = sms.send(message, [phone_number])
+            response = sms.send(message, [phone_number])    
             self.stdout.write(self.style.SUCCESS(f"Successfully sent reminder to {phone_number}"))
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Failed to send reminder to {phone_number}: {str(e)}"))
