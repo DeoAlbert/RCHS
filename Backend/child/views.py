@@ -114,6 +114,48 @@ def childStatistics(request):
 
     return Response(data)
 
+
+
+class AnalyticsMother(APIView):
+    def get(self, request, format=None):
+               # General report details
+        parents_count = Mother.objects.filter(registrant_type='Guardian').count()
+        guardians_count = Mother.objects.filter(registrant_type='Parent').count()
+        total_count = parents_count + guardians_count
+
+      
+        data = {
+            'Parent': parents_count,
+            'Guardians': guardians_count,
+            'Total': total_count,
+
+          # "age_distribution": {
+          #       "0-1": total_count,
+          #       "1-2": 23,
+          #       "2-3": 334,
+          #       "3-4": 126,
+          #       "4-5": 234,
+          #       }, 
+
+          #    "visit_distribution": {
+          #       "Jan": total_count,
+          #       "Feb": 12,
+          #       "Mar": 36,
+          #       "Apr": 0,
+          #       "may": 45,
+          #       "june": 4,
+          #       "july": 0,
+          #       "augt": 56,
+          #       "sept": 0,
+          #       "oct": 78,
+          #       "nov": 0,
+          #       "dec": 12,
+          #       },    
+                 }
+        return Response(data, status=status.HTTP_200_OK)
+
+
+                 
 class Analytics(APIView):
     def get(self, request, format=None):
                # General report details
@@ -121,12 +163,10 @@ class Analytics(APIView):
         girls_count = Child.objects.filter(child_gender='Female').count()
         total_count = boys_count + girls_count
 
-       
-
-
+      
         data = {
             'Boys_count': boys_count,
-            'Girls_Count': boys_count,
+            'Girls_Count': girls_count,
             'Total_Count': total_count,
 
           "age_distribution": {

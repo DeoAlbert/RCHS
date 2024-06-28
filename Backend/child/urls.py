@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from .views import getChildSummary, childStatistics, AggregatedDataSummaryView, Analytics, AggregatedDataSummaryView1, AggregatedDataSummaryView2
+from .views import getChildSummary, childStatistics, AggregatedDataSummaryView, Analytics, AggregatedDataSummaryView1, AggregatedDataSummaryView2, AnalyticsMother
 from .views import getChildSummary, childStatistics, get_child_nutrition_recomendations
 
 app_name = 'child'
@@ -14,6 +14,7 @@ urlpatterns = [
     path('ReportQuartely/', AggregatedDataSummaryView1.as_view(), name='aggregated-data-summary'),
     path('ReportAnnualy/', AggregatedDataSummaryView2.as_view(), name='aggregated-data-summary'),
     path('Analytics/', Analytics.as_view(), name='aggregated-data-summary'),
+    path('AnalyticsMother/', AnalyticsMother.as_view(), name='aggregated-data-summary'),
     path('get_child_nutrition_recomendations/', get_child_nutrition_recomendations, name='get_child_nutrition_recomendations'),
  
 ]
