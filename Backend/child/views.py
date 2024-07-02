@@ -19,7 +19,7 @@ from mother.models import Mother_visit, Mother
 from cgmzscore.src.main import z_score_with_class
 import json
 from datetime import date
-
+from .serializers import ChildVisitCardSerializer
 
 
 # Create your views here.
@@ -86,6 +86,15 @@ def getChildSummary(request):
             response_data.append(combined_data)
 
     return Response(response_data)
+
+
+
+@api_view(['GET'])
+def getCardDetail(request):
+    visits = Child_visit.objects.all()
+    serializer = ChildVisitCardSerializer(visits, many=True, context={'request': request})
+    return Response(serializer.data)
+
 
 
 @api_view(['GET'])

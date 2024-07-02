@@ -3,12 +3,6 @@ from mother.models import Mother
 from .models import Child_visit, Child, Consultation_Visit_Child
 from datetime import date
 
-# void
-# class ChildSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model= Child
-#         fields= "__all__"
-
 
 class ChildSerializer(serializers.HyperlinkedModelSerializer):
     mother_name = serializers.CharField()
@@ -31,11 +25,6 @@ class ChildSerializer(serializers.HyperlinkedModelSerializer):
         child = Child.objects.create(mother=mother, mother_name = mother_name,**validated_data)
         return child
 
-
-# class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model= Child_visit
-#         fields= "__all__"
 
 class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
     child_name = serializers.CharField()
@@ -94,11 +83,6 @@ class ChildVisitSerializer(serializers.HyperlinkedModelSerializer):
         child_visit = Child_visit.objects.create(child=child, child_name = child_name,**validated_data)
         return child_visit
 
-
-# class ChildConsultationVisitSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model= Consultation_Visit_Child
-#         fields= "__all__"
 
 class ChildConsultationVisitSerializer(serializers.HyperlinkedModelSerializer):
     child_name = serializers.CharField()
@@ -164,6 +148,18 @@ class ChildVisitSummarySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Child_visit
         fields = ['id','weight_grams','height','date','visit_number']
+
+
+
+
+class ChildVisitCardSerializer(serializers.HyperlinkedModelSerializer):
+    child_name = serializers.CharField()
+    child = serializers.HyperlinkedRelatedField(view_name='child-detail', read_only=True)
+
+    class Meta:
+        model = Child_visit
+        fields = ['id', 'url', 'child', 'height', 'weight_grams', 'child_name']
+
 
 
 

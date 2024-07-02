@@ -1,5 +1,7 @@
 
 from django.db import models
+from django.urls import reverse
+
 from mother.models import Mother
 
 # Create your models here.
@@ -20,6 +22,7 @@ class Child(models.Model):
     residential_region = models.CharField(max_length=255)
     residential_district = models.CharField(max_length=255)
     maternal_health_worker = models.CharField(max_length=255)
+
 
     def __str__(self):
         return self.child_name
@@ -104,6 +107,7 @@ class Consultation_Visit_Child(models.Model):
     test_results = models.CharField(max_length=255)
     additional_notes = models.CharField(max_length=255)
     #mother = models.ForeignKey(Mother, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.visit_type
