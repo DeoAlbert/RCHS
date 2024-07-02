@@ -66,155 +66,156 @@ class Followupreport(APIView):
 
         # Aggregated data response
         data =  {
-  "General Information": {
-    "Health Facility Name": health_facility_name,
-    "District": district,
-    "Region": "Dar es Salaam",
-    "Month": report_month,
-    "Year": report_year,
-    "Report Preparer's Name": report_preparer_name,
-    "Date": report_month,
-    "Cadre": "Nurse",
-    "Position": position,
-    "Approved by": approved_by,
-    "Facility/District/Region Phone Number": "071-356-7590",
-    "Date Report Received at District": today
+  "general_information": {
+    "health_facility_name": health_facility_name,
+    "district": district,
+    "region": "Dar es Salaam",
+    "month": report_month,
+    "year": report_year,
+    "report_preparer_name": report_preparer_name,
+    "date": report_month,
+    "cadre": "Nurse",
+    "position": position,
+    "approved_by": approved_by,
+    "facility_district_region_phone_number": "071-356-7590",
+    "date_report_received_at_district": today
   },
-  "Number of Registered Children": {
-    "Vaccinated": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "number_of_registered_children": {
+    "vaccinated": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Unvaccinated": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "unvaccinated": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Unknown Status": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "unknown_status": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Attendance and Weight-for-Age/Height-for-Age Ratios (Under 1 Year)": {
-    "Total Attendance (age 3 months)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "attendance_and_weight_for_age_height_for_age_ratios_under_1_year": {
+    "total_attendance_age_3_months": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Age Ratio (>80% or >-2SD, 60-80% or -2 to -3SD, <60% or <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Height Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_height_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Height-for-Age Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "height_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Attendance and Weight-for-Age/Height-for-Age Ratios (1 to 5 Years)": {
-    "Total Attendance (age 6 months)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "attendance_and_weight_for_age_height_for_age_ratios_1_to_5_years": {
+    "total_attendance_age_6_months": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Age Ratio (>80% or >-2SD, 60-80% or -2 to -3SD, <60% or <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Height Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_height_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Height-for-Age Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "height_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Vitamin A Supplementation by Age": {
-    "Children aged 6 months (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "vitamin_a_supplementation_by_age": {
+    "children_aged_6_months_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children under 1 year (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_under_1_year_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 6 months (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_6_months_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children under 1 year (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_under_1_year_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Deworming with Mebendazole/Albendazole": {
-    "Children aged 1 to 5 years (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "deworming_with_mebendazole_albendazole": {
+    "children_aged_1_to_5_years_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Feeding of Infants Born to HIV Positive Mothers": {
-    "Infants under 6 months exclusively breastfed (EBF)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "feeding_of_infants_born_to_hiv_positive_mothers": {
+    "infants_under_6_months_exclusively_breastfed": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Infants under 6 months not exclusively breastfed (with H in EBF)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "infants_under_6_months_not_exclusively_breastfed": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "PMTCT Information/Recipients": {
-    "Children born to HIV positive mothers/children with HEID number": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "pmtct_information_recipients": {
+    "children_born_to_hiv_positive_mothers_children_with_heid_number": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children referred to CTC for treatment and care": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_referred_to_ctc_for_treatment_and_care": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children given LLN": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_given_lln": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   }
 }
+
 
         return Response(data, status=status.HTTP_200_OK)
 
@@ -263,152 +264,152 @@ class Followupreport1(APIView):
 
         # Aggregated data response
         data =  {
-  "General Information": {
-    "Health Facility Name": health_facility_name,
-    "District": district,
-    "Region": "Dar es Salaam",
-    "Month": report_month,
-    "Year": report_year,
-    "Report Preparer's Name": report_preparer_name,
-    "Date": report_month,
-    "Cadre": "Nurse",
-    "Position": position,
-    "Approved by": approved_by,
-    "Facility/District/Region Phone Number": "071-356-7590",
-    "Date Report Received at District": today
+  "general_information": {
+    "health_facility_name": health_facility_name,
+    "district": district,
+    "region": "Dar es Salaam",
+    "month": report_month,
+    "year": report_year,
+    "report_preparer_name": report_preparer_name,
+    "date": report_month,
+    "cadre": "Nurse",
+    "position": position,
+    "approved_by": approved_by,
+    "facility_district_region_phone_number": "071-356-7590",
+    "date_report_received_at_district": today
   },
-  "Number of Registered Children": {
-    "Vaccinated": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "number_of_registered_children": {
+    "vaccinated": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Unvaccinated": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "unvaccinated": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Unknown Status": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "unknown_status": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Attendance and Weight-for-Age/Height-for-Age Ratios (Under 1 Year)": {
-    "Total Attendance (age 3 months)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "attendance_and_weight_for_age_height_for_age_ratios_under_1_year": {
+    "total_attendance_age_3_months": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Age Ratio (>80% or >-2SD, 60-80% or -2 to -3SD, <60% or <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Height Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_height_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Height-for-Age Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "height_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Attendance and Weight-for-Age/Height-for-Age Ratios (1 to 5 Years)": {
-    "Total Attendance (age 6 months)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "attendance_and_weight_for_age_height_for_age_ratios_1_to_5_years": {
+    "total_attendance_age_6_months": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Age Ratio (>80% or >-2SD, 60-80% or -2 to -3SD, <60% or <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Height Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_height_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Height-for-Age Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "height_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Vitamin A Supplementation by Age": {
-    "Children aged 6 months (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "vitamin_a_supplementation_by_age": {
+    "children_aged_6_months_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children under 1 year (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_under_1_year_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 6 months (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_6_months_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children under 1 year (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_under_1_year_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Deworming with Mebendazole/Albendazole": {
-    "Children aged 1 to 5 years (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "deworming_with_mebendazole_albendazole": {
+    "children_aged_1_to_5_years_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Feeding of Infants Born to HIV Positive Mothers": {
-    "Infants under 6 months exclusively breastfed (EBF)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "feeding_of_infants_born_to_hiv_positive_mothers": {
+    "infants_under_6_months_exclusively_breastfed": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Infants under 6 months not exclusively breastfed (with H in EBF)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "infants_under_6_months_not_exclusively_breastfed": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "PMTCT Information/Recipients": {
-    "Children born to HIV positive mothers/children with HEID number": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "pmtct_information_recipients": {
+    "children_born_to_hiv_positive_mothers_children_with_heid_number": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children referred to CTC for treatment and care": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_referred_to_ctc_for_treatment_and_care": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children given LLN": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_given_lln": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   }
 }
@@ -460,154 +461,155 @@ class Followupreport2(APIView):
 
         # Aggregated data response
         data =  {
-  "General Information": {
-    "Health Facility Name": health_facility_name,
-    "District": district,
-    "Region": "Dar es Salaam",
-    "Month": report_month,
-    "Year": report_year,
-    "Report Preparer's Name": report_preparer_name,
-    "Date": report_month,
-    "Cadre": "Nurse",
-    "Position": position,
-    "Approved by": approved_by,
-    "Facility/District/Region Phone Number": "071-356-7590",
-    "Date Report Received at District": today
+  "general_information": {
+    "health_facility_name": health_facility_name,
+    "district": district,
+    "region": "Dar es Salaam",
+    "month": report_month,
+    "year": report_year,
+    "report_preparer_name": report_preparer_name,
+    "date": report_month,
+    "cadre": "Nurse",
+    "position": position,
+    "approved_by": approved_by,
+    "facility_district_region_phone_number": "071-356-7590",
+    "date_report_received_at_district": today
   },
-  "Number of Registered Children": {
-    "Vaccinated": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "number_of_registered_children": {
+    "vaccinated": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Unvaccinated": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "unvaccinated": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Unknown Status": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "unknown_status": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Attendance and Weight-for-Age/Height-for-Age Ratios (Under 1 Year)": {
-    "Total Attendance (age 3 months)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "attendance_and_weight_for_age_height_for_age_ratios_under_1_year": {
+    "total_attendance_age_3_months": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Age Ratio (>80% or >-2SD, 60-80% or -2 to -3SD, <60% or <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Height Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_height_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Height-for-Age Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "height_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Attendance and Weight-for-Age/Height-for-Age Ratios (1 to 5 Years)": {
-    "Total Attendance (age 6 months)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "attendance_and_weight_for_age_height_for_age_ratios_1_to_5_years": {
+    "total_attendance_age_6_months": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Age Ratio (>80% or >-2SD, 60-80% or -2 to -3SD, <60% or <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Weight-for-Height Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "weight_for_height_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Height-for-Age Ratio (>-2SD, -2 to -3SD, <-3SD)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "height_for_age_ratio": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Vitamin A Supplementation by Age": {
-    "Children aged 6 months (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "vitamin_a_supplementation_by_age": {
+    "children_aged_6_months_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children under 1 year (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_under_1_year_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 6 months (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_6_months_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children under 1 year (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_under_1_year_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Deworming with Mebendazole/Albendazole": {
-    "Children aged 1 to 5 years (Routine)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "deworming_with_mebendazole_albendazole": {
+    "children_aged_1_to_5_years_routine": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children aged 1 to 5 years (Campaign)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_aged_1_to_5_years_campaign": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "Feeding of Infants Born to HIV Positive Mothers": {
-    "Infants under 6 months exclusively breastfed (EBF)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "feeding_of_infants_born_to_hiv_positive_mothers": {
+    "infants_under_6_months_exclusively_breastfed": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Infants under 6 months not exclusively breastfed (with H in EBF)": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "infants_under_6_months_not_exclusively_breastfed": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   },
-  "PMTCT Information/Recipients": {
-    "Children born to HIV positive mothers/children with HEID number": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+  "pmtct_information_recipients": {
+    "children_born_to_hiv_positive_mothers_children_with_heid_number": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children referred to CTC for treatment and care": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_referred_to_ctc_for_treatment_and_care": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     },
-    "Children given LLN": {
-      "Male": 0,
-      "Female": 0,
-      "Total": 0
+    "children_given_lln": {
+      "male": 0,
+      "female": 0,
+      "total": 0
     }
   }
 }
+
 
         return Response(data, status=status.HTTP_200_OK)
