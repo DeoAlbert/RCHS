@@ -8,7 +8,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Child, Child_visit, Consultation_Visit_Child
-from .serializers import ChildSerializer, ChildVisitSerializer, ChildConsultationVisitSerializer, ChildSummarySerializer, ChildVisitSummarySerializer
+from .serializers import ChildSerializer, ChildVisitSerializer, ChildConsultationVisitSerializer, ChildSummarySerializer, ChildVisitSummarySerializer, ChildCardSerializer
 from datetime import date
 from django.db.models import Count, Q, F
 from rest_framework.views import APIView

@@ -151,15 +151,20 @@ class ChildVisitSummarySerializer(serializers.HyperlinkedModelSerializer):
 
 
 
+class ChildCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Child
+        fields = ['child_name', 'child_gender']
 
 class ChildVisitCardSerializer(serializers.HyperlinkedModelSerializer):
     child_name = serializers.CharField()
     child = serializers.HyperlinkedRelatedField(view_name='child-detail', read_only=True)
+    child_gender = serializers.SerializerMethodField()
 
     class Meta:
         model = Child_visit
-        fields = ['id', 'url', 'child', 'height', 'weight_grams', 'child_name']
+        fields = ['id', 'url', 'child', 'height', 'weight_grams', 'child_name', 'child_gender']
 
-
-
+    def get_child_gender(self, obj):
+        return obj.child.child_gender
 
