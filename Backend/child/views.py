@@ -169,15 +169,15 @@ def get_child_nutrition_recomendations(request):
             classification = f"{class_hfa} && {age_category} && {sex}"
             
             response_text = {
-                'Healthy && 0 to 6 months && F': "Breastfeeding/Formula: Continue breastfeeding or formula feeding on demand.",
-                'Healthy && 6 to 12 months && F': """
+                'Healthy && 0 to 6 months && F': "Healthy : Breastfeeding/Formula: Continue breastfeeding or formula feeding on demand.",
+                'Healthy && 6 to 12 months && F': """ Healthy F:
 Balanced Introduction to Solids:
     o Iron-Fortified Cereals: 1-2 tablespoons per feeding.
     o Vegetables: 2-3 tablespoons of mashed or pureed vegetables like carrots, peas, or sweet potatoes.
     o Fruits: 2-3 tablespoons of mashed or pureed fruits like bananas, apples, or pears.
     o Proteins: 1-2 tablespoons of pureed meats or beans.""",
 
-                'Healthy && 1 to 3 years && F': """
+                'Healthy && 1 to 3 years && F': """ Healthy F:
 Balanced Diet:
 • Fruits and Vegetables: Sliced bananas, apples, cucumbers, or steamed carrots.
 • Grains: Whole grain bread, oatmeal, or quinoa.
@@ -188,24 +188,24 @@ Balanced Diet:
     • Vegetable sCcks with hummus.
     • Small porCons of cheese or yogurt
 """,
-                'Healthy && 3 to 5 years && F': """
+                'Healthy && 3 to 5 years && F': """ Healthy F:
 Varied Diet:
     • Breakfast: Whole grain toast with peanut butter and banana slices.
     • Lunch: Grilled cheese sandwich on whole grain bread with a side of baby carrots.
     • Dinner: Baked fish, quinoa, and steamed green beans.
     • Snacks: Yogurt with honey and berries, sliced vegetables with hummus.
 """,
-                'Healthy && 0 to 6 months && M': """
+                'Healthy && 0 to 6 months && M': """ Healthy M:
 Breastfeeding/Formula: Continue breastfeeding or formula feeding on demand
 """,
-                'Healthy && 6 to 12 months && M': """
+                'Healthy && 6 to 12 months && M': """ Healthy 
 Balanced Introduction to Solids:
     • Iron-Fortified Cereals: 1-2 tablespoons per feeding.
     • Vegetables: 2-3 tablespoons of mashed or pureed vegetables like carrots, peas, or sweet potatoes.
     • Fruits: 2-3 tablespoons of mashed or pureed fruits like bananas, apples, or pears.
     • Proteins: 1-2 tablespoons of pureed meats or beans.
 """,
-                'Healthy && 1 to 3 years && M': """
+                'Healthy && 1 to 3 years && M': """ Healthy
 • Balanced Diet:
     • Fruits and Vegetables: Sliced bananas, apples, cucumbers, or steamed carrots.
     • Grains: Whole grain bread, oatmeal, or quinoa.
@@ -217,71 +217,71 @@ Balanced Introduction to Solids:
     • Vegetable sCcks with hummus.
     • Small porCons of cheese or yogurt.
 """,
-                'Healthy && 3 to 5 years && M': """
+                'Healthy && 3 to 5 years && M': """ Healthy
 Varied Diet:
     • Breakfast: Whole grain toast with peanut butter and banana slices.
     • Lunch: Grilled cheese sandwich on whole grain bread with a side of baby carrots.
     • Dinner: Baked fish, quinoa, and steamed green beans.
     • Snacks: Yogurt with honey and berries, sliced vegetables with hummus.
 """,
-                'Moderately Stunted && 0 to 6 months && F': """
+                'Moderately Stunted && 0 to 6 months && F': """ Moderately Stunted
 • Exclusive Breastfeeding: Increase the frequency of breastfeeding sessions to stimulate milk production.
 • Formula Feeding: Use iron-fortified formula if breastfeeding is not possible, ensuring proper preparation and hygiene.
 • Healthcare Consultation: Regularly consult with a healthcare provider to monitor growth and address any underlying health issues.
 • Nutrient Supplementation: Consider supplements like vitamin D and iron if recommended by a healthcare provide
 """,
-                'Moderately Stunted && 6 to 12 months && F': """
+                'Moderately Stunted && 6 to 12 months && F': """ Moderately Stunted
 • Increased Nutrient Density: Offer nutrient-dense foods like mashed beans, peas, pureed poultry, and avocados.
 • Frequent Small Meals: Provide multiple small meals throughout the day.
 • Healthcare Consultation: Regular growth monitoring and developmental assessments, with tailored dietary plans.
 • Nutrient Supplementation: Administer vitamin and mineral supplements if recommended by a healthcare provider
 """,
-                'Moderately Stunted && 1 to 3 years && F': """
+                'Moderately Stunted && 1 to 3 years && F': """ Moderately Stunted
 • Nutrient-Rich Foods: Emphasize foods rich in protein, vitamins, and minerals such as eggs, fish, beans, and leafy greens.
 • Healthy Fats: Incorporate healthy fats like nuts, seeds, and oils into meals.
 • Frequent Meals: Ensure multiple small meals throughout the day.
 • Healthcare Consultation: Regularly monitor growth and development, and address any feeding difficulties or health concerns.
 """,
-                'Moderately Stunted && 3 to 5 years && F': """
+                'Moderately Stunted && 3 to 5 years && F': """ Moderately Stunted
 • Balanced Diet: Ensure a variety of foods from all food groups, focusing on nutrient-rich options.
 • Regular Meals and Snacks: Maintain three main meals and two to three healthy snacks per day.
 • Physical Activity: Encourage at least 60 minutes of physical activity daily.
 """,
-                'Moderately Stunted && 0 to 6 months && M': """
+                'Moderately Stunted && 0 to 6 months && M': """  Moderately Stunted
 • Exclusive Breastfeeding: Increase the frequency of breastfeeding sessions to stimulate milk production.
 • Formula Feeding: Use iron-fortified formula if breastfeeding is not possible, ensuring proper preparation and hygiene.
 • Healthcare Consultation: Regularly consult with a healthcare provider to monitor growth and address any underlying health issues.
 • Nutrient Supplementation: Consider supplements like vitamin D and iron if recommended by a healthcare provider
 """,
-                'Moderately Stunted && 6 to 12 months && M': """
+                'Moderately Stunted && 6 to 12 months && M': """   Moderately Stunted
 • Increased Nutrient Density: Offer nutrient-dense foods like mashed beans, peas, pureed poultry, and avocados.
 • Frequent Small Meals: Provide multiple small meals throughout the day.
 • Healthcare Consultation: Regular growth monitoring and developmental assessments, with tailored dietary plans.
 • Nutrient Supplementation: Administer vitamin and mineral supplements if recommended by a healthcare provider
 """,
-                'Moderately Stunted && 1 to 3 years && M': """
+                'Moderately Stunted && 1 to 3 years && M': """   Moderately Stunted
 • Nutrient-Rich Foods: Emphasize foods rich in protein, vitamins, and minerals such as eggs, fish, beans, and leafy greens.
 • Healthy Fats: Incorporate healthy fats like nuts, seeds, and oils into meals.
 • Frequent Meals: Ensure multiple small meals throughout the day.
 • Healthcare Consultation: Regularly monitor growth and development, and address any feeding difficulCes or health concerns.
 """,
-                'Moderately Stunted && 3 to 5 years && M': """
+                'Moderately Stunted && 3 to 5 years && M': """   Moderately Stunted
 • Balanced Diet: Ensure a variety of foods from all food groups, focusing on nutrient-rich options.
 • Regular Meals and Snacks: Maintain three main meals and two to three healthy snacks per day.
 • Physical Activity: Encourage at least 60 minutes of physical activity daily
 """,
-                'Severely Stunted && 0 to 6 months && F': """
+                'Severely Stunted && 0 to 6 months && F': """  Severely Stunted
 • Exclusive Breastfeeding: Aim to breastfeed on demand, approximately every 2-3 hours.
 • Formula Feeding: If breastfeeding is not possible, use iron-fortified infant formula, following recommended amounts based on the child's age and weight.
 """,
-                'Severely Stunted && 6 to 12 months && F': """
+                'Severely Stunted && 6 to 12 months && F': """  Severely Stunted
 • Continue Breastfeeding/Formula: Maintain breastfeeding or formula as the primary nutrition source.
 • Iron-Fortified Cereals: Start with 1-2 tablespoons of single-grain, iron-fortified cereal mixed with breast milk or formula.
 • Pureed Vegetables: Introduce 2-3 tablespoons of pureed sweet potatoes, carrots, or squash.
 • Pureed Fruits: Offer 2-3 tablespoons of mashed bananas, applesauce, or pears.
 • Proteins: Include pureed meats like chicken, turkey, or beans in small amounts (1-2 tablespoons)
 """,
-                'Severely Stunted && 1 to 3 years && F': """
+                'Severely Stunted && 1 to 3 years && F': """  Severely Stunted
 • Balanced Diet: Provide a variety of food groups in appropriate portions.
     • Fruits and Vegetables: Offer small pieces of soft fruits like bananas, peaches, or cooked vegetables like peas, carrots.
     • Grains: Serve whole grains like oatmeal, whole wheat bread, or brown rice.
@@ -294,7 +294,7 @@ Varied Diet:
     • Cheese sticks or cubes.
     • Frequent Meals: Aim for three meals and 2-3 snacks per day
 """,
-                'Severely Stunted && 3 to 5 years && F': """
+                'Severely Stunted && 3 to 5 years && F': """   Severely Stunted
 • Nutrient-Dense Diet: Ensure meals are rich in nutrients.
     • Breakfast: Whole grain cereal with milk, sliced fruit, and a boiled egg.
     • Lunch: Whole grain sandwich with turkey, avocado, and a side of cherry tomatoes.
@@ -304,18 +304,18 @@ Varied Diet:
     • Nutritious smoothies made with whole milk, yogurt, fruits, and spinach.
     • Whole grain muffins with added fruits and nuts.
 """,
-                'Severely Stunted && 0 to 6 months && M': """
+                'Severely Stunted && 0 to 6 months && M': """   Severely Stunted
 • Exclusive Breastfeeding: Breastfeed on demand, approximately every 2-3 hours.
 • Formula Feeding: Use iron-fortified infant formula, following recommended amounts based on age and weight
 """,
-                'Severely Stunted && 6 to 12 months && M': """
+                'Severely Stunted && 6 to 12 months && M': """   Severely Stunted
 • Continue Breastfeeding/Formula: Maintain breastfeeding or formula as the primary source of nutrition.
 • Iron-Fortified Cereals: Start with 1-2 tablespoons of single-grain, iron-fortified cereal mixed with breast milk or formula.
 • Pureed Vegetables: Introduce 2-3 tablespoons of pureed vegetables like sweet potatoes, carrots, or squash.
 • Pureed Fruits: Offer 2-3 tablespoons of mashed bananas, applesauce, or pears.
 • Proteins: Include pureed meats like chicken, turkey, or beans in small amounts (1-2 tablespoons).
 """,
-                'Severely Stunted && 1 to 3 years && M': """
+                'Severely Stunted && 1 to 3 years && M': """   Severely Stunted
 • Balanced Diet: Provide a variety of foods from all food groups.
     • Fruits and Vegetables: Offer small pieces of soft fruits like bananas, peaches, or cooked vegetables like peas, carrots.
     • Grains: Serve whole grains like oatmeal, whole wheat bread, or brown rice.
@@ -328,7 +328,7 @@ Varied Diet:
     • Cheese snacks or cubes.
 • Frequent Meals: Aim for three meals and 2-3 snacks per day
 """,
-                'Severely Stunted && 3 to 5 years && M': """
+                'Severely Stunted && 3 to 5 years && M': """   Severely Stunted
 • Nutrient-Dense Diet: Ensure meals are rich in nutrients
 • Breakfast: Whole grain cereal with milk, sliced fruit, and a boiled egg.
 • Lunch: Whole grain sandwich with turkey, avocado, and a side of cherry tomatoes.

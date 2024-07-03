@@ -546,9 +546,7 @@ class AggregatedDataSummaryView(APIView):
 class AggregatedDataSummaryView1(APIView):
     def get(self, request, format=None):
                # General report details
-        from datetime import date, timedelta, datetime
-
-      
+        from datetime import date, timedelta, datetime      
         today = date.today()
         current_month = today.month
         current_year = today.year
@@ -575,8 +573,6 @@ class AggregatedDataSummaryView1(APIView):
         boys_count = Child.objects.filter(child_gender='Male').count()
         girls_count = Child.objects.filter(child_gender='Female').count()
 
-
-
         # Number of children with stunted growth
         stunted_growth_count = Child_visit.objects.filter(
             Q(height__lt=F('child__length_at_birth') + 10)  # Example condition
@@ -592,17 +588,7 @@ class AggregatedDataSummaryView1(APIView):
         complementary_feeding_male=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').count()
         complementary_feeding_female=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').count()
 
-        # children_data = Child.objects.all()
-        # for child in children_data:
-        #     exclusive_breastfeeding_total = Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').count()
-        #     exclusive_breastfeeding_male=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').filter(child=child).filter(child_gender="Male").count()
-        #     exclusive_breastfeeding_female=Child_visit.objects.filter(infant_nutrition='Exclusive Breastfeeding (EBF)').filter(child=child).filter(child_gender="Female").count()
-        #     replacement_breastfeeding_total=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').count()
-        #     replacement_breastfeeding_male=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').filter(child=child).filter(child_gender="Male").count()
-        #     replacement_breastfeeding_female=Child_visit.objects.filter(infant_nutrition='Replacement Feeding (RF)').filter(child=child).filter(child_gender="Female").count()
-        #     complementary_feeding_total=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').count()
-        #     complementary_feeding_male=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').filter(child=child).filter(child_gender="Male").count()
-        #     complementary_feeding_female=Child_visit.objects.filter(infant_nutrition='Complementary Feeding (CF)').filter(child=child).filter(child_gender="Female").count()
+        
 
 
 
@@ -1087,7 +1073,7 @@ class AggregatedDataSummaryView2(APIView):
     "clients_attended_between_day_3_and_day_7": {
       "10_14": 0,
       "15_19": 0,
-      "20_24": 0,
+      "20_24": Child.objects.count(),
       "25_29": 0,
       "30_34": 0,
       "35_plus": 0,

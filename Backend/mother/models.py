@@ -55,6 +55,7 @@ class Mother_visit(models.Model):
     visit_number = models.CharField(max_length=255)
     visit_date = models.DateField()
 
+
     # Section 2: Health Measurements
     body_temperature = models.IntegerField()
     blood_pressure = models.IntegerField()
